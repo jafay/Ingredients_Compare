@@ -12,18 +12,17 @@ if sys.stderr.encoding != 'UTF-8':
 regex = re.compile('[^a-zA-Z ]')
 
 #Opens the file we write to, then the file we read from
-with open('recipesparsed.txt', 'w') as f2:
-	with open ('recipes.csv', mode='r', encoding='utf-8') as infile:
+with open('branded_foodparsed.txt', 'w') as f2:
+	with open ('branded_food.csv', mode='r', encoding='utf-8') as infile:
 		reader = csv.reader(infile)
 		for row in reader:
 #All members of the csv file are enclosed in quotation marks - this line removes the quotation marks and stores the values in the variable lis
-			lis = ["'{}'".format(row[1]) for row[1] in row[1].split("'") if row[1] not in ("", ", ")]
+			lis = ["'{}'".format(row[5]) for row[5] in row[5].split(",") if row[5] not in ("", ", ")]
 			for x in range(len(lis)):
 #This code is what takes in lis and gets rid of any non alphabetic character
 				y = regex.sub('', lis[x])
 				y = y.lower()
 				if y != '':
-#					print("a")
 					y = y.replace(" cup", "")
 					y = y.replace(" tablespoons", "")
 					y = y.replace(" tablespoon", "")
@@ -95,7 +94,15 @@ with open('recipesparsed.txt', 'w') as f2:
 					y = y.replace(" plus ", " ")
 					y = y.replace(" oz ", " ")
 					y = y.replace(" medium", "")
-					y = y.replace("monterey jack ", "")
+					y = y.replace("ingredients ", "")
+					y = y.replace("ingredient ", "")
+					y = y.replace("contains ", "")
+					y = y.replace("less ", "")
+					y = y.replace("than ", "")
+					y = y.replace("prepared ", "")
+					y = y.replace("made ", "")
+					y = y.replace("from ", "")
+					y = y.replace("monterey jack ", "")				
 					y = y.replace(" s ", "")
 					y = y.replace("  ", " ")
 					y = y.replace("  ", " ")
@@ -103,11 +110,5 @@ with open('recipesparsed.txt', 'w') as f2:
 					y = y.replace("  ", " ")
 					y = y.replace("  ", " ")
 					y = y.replace("  ", " ")
-#					if y[0] == ' ' and len(y) > 40:
-#						y = y.replace(y[0], '', 1)
-#						y = '' + y[1:]
-#					if y[0] == 's' and y[1] == ' ':
-#						y = y.replace(y[0], '', 1)
-#						y = y.replace(y[0], '', 1)
 					f2.write(y)
 					f2.write("\n")
