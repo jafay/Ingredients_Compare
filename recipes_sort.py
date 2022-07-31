@@ -23,7 +23,6 @@ with open('recipesparsed.txt', 'w') as f2:
 				y = regex.sub('', lis[x])
 				y = y.lower()
 				if y != '':
-#					print("a")
 					y = y.replace(" cup", "")
 					y = y.replace(" tablespoons", "")
 					y = y.replace(" tablespoon", "")
@@ -103,11 +102,5 @@ with open('recipesparsed.txt', 'w') as f2:
 					y = y.replace("  ", " ")
 					y = y.replace("  ", " ")
 					y = y.replace("  ", " ")
-#					if y[0] == ' ' and len(y) > 40:
-#						y = y.replace(y[0], '', 1)
-#						y = '' + y[1:]
-#					if y[0] == 's' and y[1] == ' ':
-#						y = y.replace(y[0], '', 1)
-#						y = y.replace(y[0], '', 1)
 					f2.write(y)
 					f2.write("\n")

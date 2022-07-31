@@ -22,7 +22,7 @@ with open('branded_food-full.txt', 'w') as f2:
 					f2.write(y)
 					f2.write("\n")
 
-with open('branded_foodcounts.txt', 'w') as f3:
+with open('branded_foodcounts.csv', 'w') as f3:
 	with open('branded_food-mostfrequent.txt', 'w') as f4:
 		counts = dict()
 		for i in fullList:
@@ -30,7 +30,7 @@ with open('branded_foodcounts.txt', 'w') as f3:
 		sortedlist = sorted(counts, key = counts.get, reverse=True)
 		for i in sortedlist:
 			f3.write(str(i))
-			f3.write(" - has frequency of ")
+			f3.write(", ")
 			f3.write(str(counts[i]))
 			f3.write("\n")
 			if int(counts[i]) > 25000:
